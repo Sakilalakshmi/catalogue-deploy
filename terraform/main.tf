@@ -38,7 +38,7 @@ resource "null_resource" "cluster" {
   provisioner "remote-exec" {
     # Bootstrap script called with private_ip of each node in the cluster
     inline = [
-      "sudo chmod +x /tmp/catalogue.sh",
+      "chmod +x /tmp/catalogue.sh",
       "sudo sh /tmp/catalogue.sh ${var.app_version}"
     ]
   }

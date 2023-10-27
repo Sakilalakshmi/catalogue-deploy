@@ -14,30 +14,30 @@ pipeline {
 
             }
         }
-        stage('Init'){
-            steps{
-                sh """
-                cd terraform
-                terraform init -reconfigure
-                """
-            }
-        }
-        stage('Plan'){
-            steps{
-                sh """
-                cd terraform
-                terraform plan -var="app_version=1.0.6"
-                """
-            }
-        }
-        stage('Apply'){
-            steps{
-                sh """
-                cd terraform
-                terraform apply -var="app_version=1.0.6" -auto-approve
-                """
-            }
-        }
+        // stage('Init'){
+        //     steps{
+        //         sh """
+        //         cd terraform
+        //         terraform init -reconfigure
+        //         """
+        //     }
+        // }
+        // stage('Plan'){
+        //     steps{
+        //         sh """
+        //         cd terraform
+        //         terraform plan -var="app_version=1.0.6"
+        //         """
+        //     }
+        // }
+        // stage('Apply'){
+        //     steps{
+        //         sh """
+        //         cd terraform
+        //         terraform apply -var="app_version=1.0.6" -auto-approve
+        //         """
+        //     }
+        // }
     }
 
 
