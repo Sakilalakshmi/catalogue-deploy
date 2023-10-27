@@ -14,22 +14,22 @@ pipeline {
 
             }
         }
-        // stage('Init'){
-        //     steps{
-        //         sh """
-        //         cd terraform
-        //         terraform init -reconfigure
-        //         """
-        //     }
-        // }
-        // stage('Plan'){
-        //     steps{
-        //         sh """
-        //         cd terraform
-        //         terraform plan -var="app_version=1.0.6"
-        //         """
-        //     }
-        // }
+        stage('Init'){
+            steps{
+                sh """
+                cd terraform
+                terraform init -reconfigure
+                """
+            }
+        }
+        stage('Plan'){
+            steps{
+                sh """
+                cd terraform
+                terraform plan 
+                """
+            }
+        }
         // stage('Apply'){
         //     steps{
         //         sh """
