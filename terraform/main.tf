@@ -44,31 +44,31 @@ resource "null_resource" "cluster" {
   }
 }
 
-# ## stop the instance and take AMI.
-# resource "aws_ec2_instance_state" "catalogue_instance" {
-#   instance_id = module.catalogue_instance.id
-#   state       = "stopped"
-# }
+## stop the instance and take AMI.
+resource "aws_ec2_instance_state" "catalogue_instance" {
+  instance_id = module.catalogue_instance.id
+  state       = "stopped"
+}
 
-# resource "aws_ami_from_instance" "catalogue_ami" {
-#   name               = "${var.common_tags.Component}-${local.current_time}"
-#   source_instance_id = module.catalogue_instance.id
-#   depends_on = [ aws_ec2_instance_state.catalogue_instance ]
-# }
+resource "aws_ami_from_instance" "catalogue_ami" {
+  name               = "${var.common_tags.Component}-${local.current_time}"
+  source_instance_id = module.catalogue_instance.id
+  depends_on = [ aws_ec2_instance_state.catalogue_instance ]
+}
 
-# resource "null_resource" "delete_instance" {
-#   # Changes to any instance of the cluster requires re-provisioning
-#   triggers = {
-#     ami_id = aws_ami_from_instance.catalogue_ami.id
-#   }
+resource "null_resource" "delete_instance" {
+  # Changes to any instance of the cluster requires re-provisioning
+  triggers = {
+    ami_id = aws_ami_from_instance.catalogue_ami.id
+  }
 
-#   provisioner "local-exec" {
-#     # Bootstrap script called with private_ip of each node in the cluster
-#     command = "aws ec2 terminate-instances --instance-ids ${module.catalogue_instance.id}"
-#   }
-#   depends_on = [ aws_ami_from_instance.catalogue_ami ]
-# }
+  provisioner "local-exec" {
+    # Bootstrap script called with private_ip of each node in the cluster
+    command = "aws ec2 terminate-instances --instance-ids ${module.catalogue_instance.id}"
+  }
+  depends_on = [ aws_ami_from_instance.catalogue_ami ]
+}
 
-# output "app_version" {
-#   value = var.app_version
-# }
+output "app_version" {
+  value = var.app_version
+}
