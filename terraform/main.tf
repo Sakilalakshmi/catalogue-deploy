@@ -23,15 +23,14 @@ resource "null_resource" "cluster" {
   # Bootstrap script can run on any instance of the cluster
   # So we just choose the first in this case
   connection {
-    type     = "ssh"
-    user     = "centos"
+    type = "ssh"
+    user = "centos"
     password = "DevOps321"
-    host     = module.catalogue_instance.private_ip
+    host = module.catalogue_instance.private_ip
   }
-
-  #copy the file
+  # copy the file
   provisioner "file" {
-    source      = "catalogue.sh"
+    source = "catalogue.sh"
     destination = "/tmp/catalogue.sh"
   }
 
