@@ -5,7 +5,7 @@ terraform {
       version = "5.15.0"
     }
   }
-
+  
   backend "s3" {
     bucket = "sakila-remote-state1"
     key = "catalogue-dev"
@@ -16,6 +16,5 @@ terraform {
 
 provider "aws" {
   # Configuration options
-  # you can give access key and secret key here, but security problem
   region = "us-east-1"
 }

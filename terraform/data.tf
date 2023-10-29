@@ -10,9 +10,9 @@ data "aws_ssm_parameter" "private_subnet_ids" {
   name = "/${var.project_name}/${var.env}/private_subnet_ids"
 }
 
-# data "aws_ssm_parameter" "app_alb_listener_arn" {
-#   name = "/${var.project_name}/${var.env}/app_alb_listener_arn"
-# }
+data "aws_ssm_parameter" "app_alb_listener_arn" {
+  name = "/${var.project_name}/${var.env}/app_alb_listener_arn"
+}
 
 data "aws_ami" "devops_ami" {
   most_recent      = true
