@@ -15,6 +15,10 @@ variable "common_tags" {
   }
 }
 
+variable "domain_name" {
+  default = "learningdevops.shop"
+}
+
 variable "app_version" {
   # this is just to test variable is flowing from terraform to shell and then to ansible
   default = "100.100.100"
