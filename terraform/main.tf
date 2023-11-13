@@ -5,7 +5,7 @@ module "catalogue_instance" {
   vpc_security_group_ids = [data.aws_ssm_parameter.catalogue_sg_id.value]
   # it should be in Roboshop DB subnet
   subnet_id = element(split(",",data.aws_ssm_parameter.private_subnet_ids.value), 0)
-  iam_instance_profile = "catalogue-profile-${var.env}"
+  iam_instance_profile = "catalogue_profile"
   //user_data = file("catalogue.sh")
   tags = merge(
     {
