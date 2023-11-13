@@ -9,7 +9,7 @@ module "catalogue_instance" {
   //user_data = file("catalogue.sh")
   tags = merge(
     {
-        Name = "catalogue-dev-ami"
+        Name = "catalogue-${var.env}-ami"
     },
     var.common_tags
   )
